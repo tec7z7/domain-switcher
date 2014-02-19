@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<style>
+		* {margin: 0; padding: 0;}
+		body {width: 550px;  margin: 0 auto; font-family: 'Helvetica Neue', 'Helvetica', 'Arial'; color: #3F6EC2;}
+		h2 {  margin: 0 auto;}
+		hr {margin: 5px 0 20px 0;}
+		#envsList { width: 100%;}
+		input[type='text'] {width: 190px; padding: 3px; margin: 10px 0; font-size: 14px;}
+		button {height: 21px; padding: 3px 10px;}
+	</style>
+	<script src="jquery-2.1.0.min.js"></script>
+	<script src="options-script.js"></script>
+</head>
+<body>
+	<h2>Options</h2><hr>
+	<div id="envsList"></div>
+	<div>
+		<input type="text" placeholder="Dev" id="addName" />
+		<input type="text" placeholder="http://vitals.dev" id="addAddress" value="http://" />
+		<button id="add">Add</button>
+	</div>
+</body>
+</html>
