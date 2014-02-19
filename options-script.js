@@ -41,7 +41,7 @@ $(document).ready(function() {
 		var AA = $("#addAddress").val();
 		if(AN == '') {alert("Name cannot be blank."); return false;}
 		if(AA == '') {alert("Address cannot be blank."); return false;}
-		if(!AN.match('/^[a-z0-9]+$/i')) {alert('Name must be alphanumeric.'); return false; }
+		AN = AN.replace(/[^a-z0-9]+/, '');
 		envs[AN] = AA;
 		localStorage.setItem('envs', JSON.stringify(envs));
 		location.reload();

@@ -1,10 +1,8 @@
 //Creates default environments if none are set
 if(!localStorage.getItem('envs')) {
 	var envs = {
-		'dev': 'http://vitals.dev',
-		'qa': 'http://qa.mdxdev.net',
-		'staging': 'http://staging.vitals.com',
-		'production': 'http://www.vitals.com'
+		'Example': 'http://example.dev',
+		'StagingExample': 'http://staging.example.dev'
 	};
 	localStorage.setItem('envs', JSON.stringify(envs));
 }
