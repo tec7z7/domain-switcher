@@ -6,7 +6,8 @@ $(document).ready(function() {
 		var count = 1;
 		for (var key in envs) {
 			(function(key) {
-				var element = "<input type='text' data-oldName='"+key+"' id='newName"+count+"' value='"+key+"' /> ";
+				var element = "<div id='message'></div>";
+				element += "<input type='text' data-oldName='"+key+"' id='newName"+count+"' value='"+key+"' /> ";
 				element += "<input type='text' data-oldAddress='"+envs[key]+"' id='newAddress"+count+"' value='"+envs[key]+"' /> ";
 				element += "<button class='update' id='"+count+"'>Update</button> ";
 				element += "<button class='delete' id='"+key+"' >Delete</button><br>";
@@ -25,7 +26,6 @@ $(document).ready(function() {
 		delete envs[ON];
 		envs[NN] = NA;
 		localStorage.setItem('envs', JSON.stringify(envs));
-		alert(NN+': '+NA+' updated.');
 		location.reload();
 	});
 
@@ -39,8 +39,16 @@ $(document).ready(function() {
 	$("#add").click(function() {
 		var AN = $("#addName").val();
 		var AA = $("#addAddress").val();
-		if(AN == '') {alert("Name cannot be blank."); return false;}
-		if(AA == '') {alert("Address cannot be blank."); return false;}
+		if(AN === '') {
+			$('#message').empty();
+			$('#message').append('Name cannot be blank.');
+			return false;
+		}
+		if(AA === '') {
+			$('#message').empty();
+			$('#message').append('Address cannot be blank.');
+			return false;
+		}
 		AN = AN.replace(/[^a-z0-9]+/i, '');
 		envs[AN] = AA;
 		localStorage.setItem('envs', JSON.stringify(envs));
