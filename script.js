@@ -15,9 +15,10 @@ envs = JSON.parse(envs);
 //remove domain, append path to the passed in new domain
 function changeDomain(newEnv) {
 	chrome.tabs.getSelected(null, function(tab){
-		var m = tab.url.match(/^http:\/\/[^/]+/);
-		var domain = m ? m[0] : '';
-		var path = tab.url.replace(domain, '');
+		var tmp = document.createElement('a');
+		tmp.href = tab.url;
+		var path = tmp.href.replace(tmp.pathname+tmp.search, '');
+		path = tab.url.replace(path, '');
 		chrome.tabs.update(tab.id, {url: newEnv+path});
 	});
 }
@@ -26,15 +27,19 @@ $(document).ready(function() {
 
 	//Loop through stored environments and create div elements and append to #envsList div
 	for (var key in envs) {
-		var item = key.charAt(0).toUpperCase() + key.slice(1);
-		$("#envsList").append("<div id='"+key+"'>"+item+"</div>");
-	}
+			(function(key) {
+				var item = key.charAt(0).toUpperCase() + key.slice(1);
+				$("#envsList").append("<div id='"+key+"'>"+item+"</div>");
+			}(key));
+		}
 
 	//Bind click function to dynamically created divs
 	for (var key in envs) {
-		$('#'+key).click(function() {
-			changeDomain(envs[key]);
-		});
+		(function(key) {
+			$('#'+key).click(function() {
+				changeDomain(envs[key]);
+			});
+		}(key));
 	}
 
 	//Open options.html in new tab
