@@ -26,19 +26,15 @@ $(document).ready(function() {
 
 	//Loop through stored environments and create div elements and append to #envsList div
 	for (var key in envs) {
-		(function(key) {
-			var item = key.charAt(0).toUpperCase() + key.slice(1);
-			$("#envsList").append("<div id='"+key+"'>"+item+"</div>");
-		}(key));
+		var item = key.charAt(0).toUpperCase() + key.slice(1);
+		$("#envsList").append("<div id='"+key+"'>"+item+"</div>");
 	}
 
 	//Bind click function to dynamically created divs
 	for (var key in envs) {
-		(function(key) {
-			$('#'+key).click(function() {
-				changeDomain(envs[key]);
-			});
-		}(key));
+		$('#'+key).click(function() {
+			changeDomain(envs[key]);
+		});
 	}
 
 	//Open options.html in new tab
