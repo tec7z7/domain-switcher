@@ -3,17 +3,15 @@ envs = JSON.parse(envs);
 $(document).ready(function() {
 
 	if(envs) {
-		var count = 1;
+		var count = 1, element;
 		for (var key in envs) {
-			(function(key) {
-				var element = "<div id='message'></div>";
-				element += "<input type='text' data-oldName='"+key+"' id='newName"+count+"' value='"+key+"' /> ";
-				element += "<input type='text' data-oldAddress='"+envs[key]+"' id='newAddress"+count+"' value='"+envs[key]+"' /> ";
-				element += "<button class='update' id='"+count+"'>Update</button> ";
-				element += "<button class='delete' id='"+key+"' >Delete</button><br>";
-				$("#envsList").append(element);
-				count++;
-			}(key));
+			element = "<li class='ui-state-default' id='order-"+count+"'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span><input type='text' data-oldName='"+key+"' id='newName"+count+"' value='"+key+"' /> ";
+			element += "<input type='text' data-oldAddress='"+envs[key]+"' id='newAddress"+count+"' value='"+envs[key]+"' /> ";
+			element += "<button class='update' id='"+count+"'>Update</button> ";
+			element += "<button class='delete' id='"+key+"' >Delete</button>";
+			element += "</li>";
+			$("#sortable").append(element);
+			count++;
 		}
 	}
 
@@ -53,6 +51,25 @@ $(document).ready(function() {
 		envs[AN] = AA;
 		localStorage.setItem('envs', JSON.stringify(envs));
 		location.reload();
+	});
+
+	$(function() {
+		$( "#sortable" ).sortable({
+			axis: 'y',
+			update: function (event, ui) {
+				var order = $(this).sortable('toArray');
+				localStorage.removeItem('envs');
+				var reOrder = {};
+				for(var key in order) {
+					var id = $.trim(order[key++].replace('order-', ''));
+					var ON = $("#newName"+id).attr('data-oldName');
+					var OA = $("#newAddress"+id).attr('data-oldAddress');
+					reOrder[ON] = OA;
+					localStorage.setItem('envs', JSON.stringify(reOrder));
+				}
+			}
+		});
+		$( "#sortable" ).disableSelection();
 	});
 
 });
