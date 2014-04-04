@@ -4,9 +4,9 @@
 	<style>
 		* {margin: 0; padding: 0;}
 		body {width: 100%; font-family: 'Helvetica Neue', 'Helvetica', 'Arial'; color: #3F6EC2;}
-		#container { width: 600px; margin: 0 auto; }
+		#container { width: 600px; margin: 20px auto 0 auto; }
 		h2 {  margin: 0 auto;}
-		hr {margin: 5px 0 20px 0;}
+		hr {margin: 5px 0;}
 		#envsList { width: 100%;}
 		input[type='text'] {width: 205px; padding: 3px; margin: 10px 0; font-size: 14px;}
 		button {height: 21px; padding: 3px 10px;}
@@ -15,6 +15,7 @@
 		#sortable li { padding-left: 30px; }
 		#sortable li span { position: absolute; margin: 15px 0 0 -23px; }
 		#sortable li span:hover { cursor: move; }
+		#message { height: 25px;}
 	</style>
 	</style>
 	<link rel="stylesheet" type="text/css" href="jquery-ui-sortable/css/smoothness/jquery-ui-1.10.4.custom.min.css">
@@ -27,13 +28,14 @@
 <body>
 	<div id="container">
 		<h2>Options</h2><hr>
+		<div id="message"></div>
 		<div id="envsList">
 			<ul id='sortable'>
 			</ul>
 		</div>
 		<div>
-			<input type="text" placeholder="Dev" id="addName" />
-			<input type="text" placeholder="http://vitals.dev" id="addAddress" value="http://" />
+			<input type="text" placeholder="Name" id="addName" />
+			<input type="text" placeholder="Address" id="addAddress" value="http://" />
 			<button id="add">Add</button>
 		</div>
 	</div>

@@ -21,9 +21,21 @@ $(document).ready(function() {
 		var NA = $("#newAddress"+id).val();
 		var ON = $("#newName"+id).attr('data-oldName');
 		var OA = $("#newAddress"+id).attr('data-oldAddress');
+		if(NN === '') {
+			$('#message').empty();
+			$('#message').append('Name cannot be blank.');
+			return false;
+		}
+		if(NA === '') {
+			$('#message').empty();
+			$('#message').append('Address cannot be blank.');
+			return false;
+		}
 		delete envs[ON];
 		envs[NN] = NA;
 		localStorage.setItem('envs', JSON.stringify(envs));
+		var currentURL = document.location;
+		alert('Updated:\n'+NN+' -> '+NA);
 		location.reload();
 	});
 
@@ -39,12 +51,12 @@ $(document).ready(function() {
 		var AA = $("#addAddress").val();
 		if(AN === '') {
 			$('#message').empty();
-			$('#message').append('Name cannot be blank.');
+			$('#message').append('Name cannot be blank.').show();
 			return false;
 		}
 		if(AA === '') {
 			$('#message').empty();
-			$('#message').append('Address cannot be blank.');
+			$('#message').append('Address cannot be blank.').show();
 			return false;
 		}
 		AN = AN.replace(/[^a-z0-9]+/i, '');

@@ -2,13 +2,15 @@
 <html>
 <head>
 	<style>
-		* {margin: 0; padding: 0;}
-		body {width: 150px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial'; color: #3F6EC2;}
+		* { margin: 0; padding: 0; }
+		body { min-width: 150px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial'; color: #3F6EC2; }
 		#envsList { width: 100%;}
-		#envsList div {border-bottom: 1px solid #ddd; margin: 5px 0; padding: 7px 5px;}
-		#envsList div:hover {background: #ddd; cursor: pointer;}
-		#options {text-align: center; color: #a6a6a6;}
-		#options:hover {cursor: pointer; text-decoration: underline;}
+		#envsList div { border-bottom: 1px solid #ddd; margin: 5px 0; padding: 7px 5px; }
+		#envsList div span { float: right; padding: 0 5px; background: #fff; }
+		#envsList div span:hover { background: #fff; }
+		#envsList div:hover { background: #ddd; cursor: pointer; }
+		#options { text-align: center; color: #a6a6a6; }
+		#options:hover { cursor: pointer; text-decoration: underline; }
 	</style>
 	<script src="jquery-2.1.0.min.js"></script>
 	<script src="script.js"></script>
