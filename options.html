@@ -22,10 +22,20 @@
 
 	<script src="jquery-2.1.0.min.js"></script>
 	<script src="jquery-ui-sortable/js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="mustache.js"></script>
 	<script src="options-script.js"></script>
 
 </head>
 <body>
+	<script id="env_li_template" type="x-tmpl-mustache">
+		<li class='ui-state-default' id='order-{{count}}'>
+			<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>
+			<input type='text' data-oldName='{{name}}' id='newName{{count}}' value='{{name}}' />
+			<input type='text' data-oldAddress='{{address}}' id='newAddress{{count}}' value='{{address}}' />
+			<button class='update' id='{{count}}'>Update</button>
+			<button class='delete' id='{{name}}'>Delete</button>
+		</li>
+	</script>
 	<div id="container">
 		<h2>Options</h2><hr>
 		<div id="message"></div>
