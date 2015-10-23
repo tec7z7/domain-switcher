@@ -2,14 +2,19 @@ var envs = localStorage.getItem('envs');
 envs = JSON.parse(envs);
 $(document).ready(function() {
 
-	if(envs) {
+	// Initialize stored values
+	// Build list of envs in the options view contained in a sortable ul as li elements
+	if (envs) {
 		var count = 1, element;
 		for (var key in envs) {
-			element = "<li class='ui-state-default' id='order-"+count+"'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span><input type='text' data-oldName='"+key+"' id='newName"+count+"' value='"+key+"' /> ";
-			element += "<input type='text' data-oldAddress='"+envs[key]+"' id='newAddress"+count+"' value='"+envs[key]+"' /> ";
-			element += "<button class='update' id='"+count+"'>Update</button> ";
-			element += "<button class='delete' id='"+key+"' >Delete</button>";
-			element += "</li>";
+			template = $('#env_li_template').html();
+			element = Mustache.render(template,
+				{
+					count: count,
+					key: key,
+					envs: envs
+				}
+			);
 			$("#sortable").append(element);
 			count++;
 		}
