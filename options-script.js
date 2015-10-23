@@ -8,13 +8,12 @@ $(document).ready(function() {
 		var count = 1, element;
 		for (var key in envs) {
 			template = $('#env_li_template').html();
-			element = Mustache.render(template,
-				{
-					count: count,
-					key: key,
-					envs: envs
-				}
-			);
+			vars = {
+						count: count,
+						name: key,
+						address: envs[key]
+					};
+			element = Mustache.render(template, vars);
 			$("#sortable").append(element);
 			count++;
 		}

@@ -30,10 +30,10 @@
 	<script id="env_li_template" type="x-tmpl-mustache">
 		<li class='ui-state-default' id='order-{{count}}'>
 			<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>
-			<input type='text' data-oldName='{{key}}' id='newName{{count}}' value='{{key}}' />
-			<input type='text' data-oldAddress='{{envs[key]}}' id='newAddress{{count}}' value='{{envs[key]}}' />
+			<input type='text' data-oldName='{{name}}' id='newName{{count}}' value='{{name}}' />
+			<input type='text' data-oldAddress='{{address}}' id='newAddress{{count}}' value='{{address}}' />
 			<button class='update' id='{{count}}'>Update</button>
-			<button class='delete' id='{{key}}'>Delete</button>
+			<button class='delete' id='{{name}}'>Delete</button>
 		</li>
 	</script>
 	<div id="container">
